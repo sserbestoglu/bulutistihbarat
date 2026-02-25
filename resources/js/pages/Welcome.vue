@@ -554,75 +554,36 @@ const features = [
                     <p class="mx-auto max-w-xl text-slate-400 text-lg">Hizmetlerimiz hakkında detaylı bilgi almak için bizimle iletişime geçin</p>
                 </div>
 
-                <div class="grid gap-12 lg:grid-cols-2">
-                    <!-- Contact Info -->
-                    <div class="space-y-6">
-                        <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
-                                <Phone class="h-6 w-6" style="color:#60a5fa;" />
-                            </div>
-                            <div>
-                                <div class="text-sm text-slate-400 mb-1">Telefon</div>
-                                <div class="text-white font-semibold">0850 XXX XX XX</div>
-                                <div class="text-slate-400 text-sm mt-0.5">Pzt–Cum 08:30–18:00</div>
-                            </div>
+                <div class="grid gap-6 md:grid-cols-3">
+                    <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                            <Phone class="h-6 w-6" style="color:#60a5fa;" />
                         </div>
-                        <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
-                                <Mail class="h-6 w-6" style="color:#60a5fa;" />
-                            </div>
-                            <div>
-                                <div class="text-sm text-slate-400 mb-1">E-posta</div>
-                                <div class="text-white font-semibold">info@bulutistihbarat.com</div>
-                                <div class="text-slate-400 text-sm mt-0.5">7/24 yanıt veriyoruz</div>
-                            </div>
-                        </div>
-                        <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
-                            <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
-                                <MapPin class="h-6 w-6" style="color:#60a5fa;" />
-                            </div>
-                            <div>
-                                <div class="text-sm text-slate-400 mb-1">Adres</div>
-                                <div class="text-white font-semibold">İstanbul, Türkiye</div>
-                                <div class="text-slate-400 text-sm mt-0.5">Türkiye genelinde operasyon</div>
-                            </div>
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">Telefon</div>
+                            <div class="text-white font-semibold">0850 XXX XX XX</div>
+                            <div class="text-slate-400 text-sm mt-0.5">Pzt–Cum 08:30–18:00</div>
                         </div>
                     </div>
-
-                    <!-- Contact Form -->
-                    <div class="rounded-3xl border p-8" style="border-color:rgba(56,189,248,0.15);background:rgba(255,255,255,0.02);">
-                        <form class="space-y-5" @submit.prevent>
-                            <div class="grid gap-5 sm:grid-cols-2">
-                                <div>
-                                    <label class="mb-2 block text-sm text-slate-400">Ad Soyad</label>
-                                    <input type="text" placeholder="Adınız Soyadınız" class="w-full rounded-xl border bg-transparent px-4 py-3 text-white text-sm outline-none transition-all focus:border-sky-500/50 placeholder:text-slate-600"
-                                        style="border-color:rgba(255,255,255,0.1);" />
-                                </div>
-                                <div>
-                                    <label class="mb-2 block text-sm text-slate-400">Kurum</label>
-                                    <input type="text" placeholder="Kurum adı" class="w-full rounded-xl border bg-transparent px-4 py-3 text-white text-sm outline-none transition-all focus:border-sky-500/50 placeholder:text-slate-600"
-                                        style="border-color:rgba(255,255,255,0.1);" />
-                                </div>
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm text-slate-400">E-posta</label>
-                                <input type="email" placeholder="ornek@kurum.com" class="w-full rounded-xl border bg-transparent px-4 py-3 text-white text-sm outline-none transition-all focus:border-sky-500/50 placeholder:text-slate-600"
-                                    style="border-color:rgba(255,255,255,0.1);" />
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm text-slate-400">Telefon</label>
-                                <input type="tel" placeholder="0 5XX XXX XX XX" class="w-full rounded-xl border bg-transparent px-4 py-3 text-white text-sm outline-none transition-all focus:border-sky-500/50 placeholder:text-slate-600"
-                                    style="border-color:rgba(255,255,255,0.1);" />
-                            </div>
-                            <div>
-                                <label class="mb-2 block text-sm text-slate-400">Mesajınız</label>
-                                <textarea rows="4" placeholder="Hizmet talebiniz hakkında bilgi verin..." class="w-full resize-none rounded-xl border bg-transparent px-4 py-3 text-white text-sm outline-none transition-all focus:border-sky-500/50 placeholder:text-slate-600"
-                                    style="border-color:rgba(255,255,255,0.1);"></textarea>
-                            </div>
-                            <button type="submit" class="w-full rounded-xl py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 hover:scale-[1.01]" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                                Mesaj Gönder
-                            </button>
-                        </form>
+                    <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                            <Mail class="h-6 w-6" style="color:#60a5fa;" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">E-posta</div>
+                            <div class="text-white font-semibold">info@bulutistihbarat.com</div>
+                            <div class="text-slate-400 text-sm mt-0.5">7/24 yanıt veriyoruz</div>
+                        </div>
+                    </div>
+                    <div class="rounded-2xl border p-6 flex items-start gap-4" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
+                        <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                            <MapPin class="h-6 w-6" style="color:#60a5fa;" />
+                        </div>
+                        <div>
+                            <div class="text-sm text-slate-400 mb-1">Adres</div>
+                            <div class="text-white font-semibold">İstanbul, Türkiye</div>
+                            <div class="text-slate-400 text-sm mt-0.5">Türkiye genelinde operasyon</div>
+                        </div>
                     </div>
                 </div>
             </div>
