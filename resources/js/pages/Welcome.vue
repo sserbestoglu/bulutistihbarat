@@ -185,11 +185,16 @@ const features = [
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-3">
-                    <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 4px 14px rgba(14,58,138,0.55);">
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.22),inset 0 1px 0 rgba(255,255,255,0.07),0 4px 16px rgba(10,30,66,0.65);">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                            <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
-                            <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
-                            <circle cx="12" cy="12" r="1.3" fill="white"/>
+                            <circle cx="10.5" cy="10.5" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <circle cx="10.5" cy="10.5" r="3.2" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            <line x1="5.8" y1="10.5" x2="8.3" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="12.7" y1="10.5" x2="15.2" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="10.5" y1="5.8" x2="10.5" y2="8.3" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="10.5" y1="12.7" x2="10.5" y2="15.2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <circle cx="10.5" cy="10.5" r="1.4" fill="white"/>
+                            <line x1="15.2" y1="15.2" x2="19.5" y2="19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
                         </svg>
                     </div>
                     <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
@@ -325,11 +330,16 @@ const features = [
                         <div class="absolute -inset-4 rounded-3xl opacity-20 blur-2xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);"></div>
                         <div class="relative rounded-3xl border p-8" style="border-color:rgba(56,189,248,0.15);background:rgba(255,255,255,0.03);">
                             <div class="mb-6 flex items-center gap-4">
-                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 6px 20px rgba(14,58,138,0.5);">
-                                    <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none">
-                                        <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" stroke-linejoin="round"/>
-                                        <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
-                                        <circle cx="12" cy="12" r="1.4" fill="white"/>
+                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.22),inset 0 1px 0 rgba(255,255,255,0.07),0 6px 20px rgba(10,30,66,0.65);">
+                                    <svg class="h-7 w-7" viewBox="0 0 24 24" fill="none">
+                                        <circle cx="10.5" cy="10.5" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                                        <circle cx="10.5" cy="10.5" r="3.2" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                        <line x1="5.8" y1="10.5" x2="8.3" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                        <line x1="12.7" y1="10.5" x2="15.2" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                        <line x1="10.5" y1="5.8" x2="10.5" y2="8.3" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                        <line x1="10.5" y1="12.7" x2="10.5" y2="15.2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                        <circle cx="10.5" cy="10.5" r="1.4" fill="white"/>
+                                        <line x1="15.2" y1="15.2" x2="19.5" y2="19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
                                     </svg>
                                 </div>
                                 <div>
@@ -603,11 +613,16 @@ const features = [
                     <!-- Brand -->
                     <div class="md:col-span-2">
                         <div class="mb-4 flex items-center gap-3">
-                            <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 4px 14px rgba(14,58,138,0.55);">
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.22),inset 0 1px 0 rgba(255,255,255,0.07),0 4px 16px rgba(10,30,66,0.65);">
                                 <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
-                                    <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
-                                    <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
-                                    <circle cx="12" cy="12" r="1.3" fill="white"/>
+                                    <circle cx="10.5" cy="10.5" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                                    <circle cx="10.5" cy="10.5" r="3.2" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                                    <line x1="5.8" y1="10.5" x2="8.3" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                    <line x1="12.7" y1="10.5" x2="15.2" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                    <line x1="10.5" y1="5.8" x2="10.5" y2="8.3" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                    <line x1="10.5" y1="12.7" x2="10.5" y2="15.2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                                    <circle cx="10.5" cy="10.5" r="1.4" fill="white"/>
+                                    <line x1="15.2" y1="15.2" x2="19.5" y2="19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
                                 </svg>
                             </div>
                             <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
 import { ref } from 'vue';
-import { Search, ArrowLeft, Cloud, Shield, AlertCircle, CheckCircle2, Car, Info, RotateCcw } from 'lucide-vue-next';
+import { Search, ArrowLeft, Shield, AlertCircle, CheckCircle2, Car, Info, RotateCcw } from 'lucide-vue-next';
 
 const plate = ref('');
 const loading = ref(false);
@@ -81,10 +81,19 @@ function onInput(e: Event) {
         <nav class="border-b px-6 py-4" style="border-color:rgba(255,255,255,0.06);background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);">
             <div class="mx-auto flex max-w-5xl items-center justify-between">
                 <Link href="/" class="flex items-center gap-3">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                        <Cloud class="h-5 w-5 text-white" />
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.22),inset 0 1px 0 rgba(255,255,255,0.07),0 4px 16px rgba(10,30,66,0.65);">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                            <circle cx="10.5" cy="10.5" r="6" stroke="rgba(255,255,255,0.6)" stroke-width="1.5"/>
+                            <circle cx="10.5" cy="10.5" r="3.2" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+                            <line x1="5.8" y1="10.5" x2="8.3" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="12.7" y1="10.5" x2="15.2" y2="10.5" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="10.5" y1="5.8" x2="10.5" y2="8.3" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <line x1="10.5" y1="12.7" x2="10.5" y2="15.2" stroke="rgba(255,255,255,0.65)" stroke-width="1.1"/>
+                            <circle cx="10.5" cy="10.5" r="1.4" fill="white"/>
+                            <line x1="15.2" y1="15.2" x2="19.5" y2="19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
                     </div>
-                    <span class="text-lg font-bold text-white">Bulut <span style="background:linear-gradient(90deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
+                    <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </Link>
                 <Link href="/" class="flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-slate-300 transition-all hover:text-white hover:border-slate-400" style="border-color:rgba(255,255,255,0.1);">
                     <ArrowLeft class="h-4 w-4" />
@@ -100,9 +109,18 @@ function onInput(e: Event) {
             <div class="mb-12 text-center">
                 <div class="mb-6 flex justify-center">
                     <div class="relative">
-                        <div class="absolute -inset-3 rounded-3xl opacity-30 blur-xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);"></div>
-                        <div class="relative flex h-20 w-20 items-center justify-center rounded-3xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                            <Search class="h-10 w-10 text-white" />
+                        <div class="absolute -inset-3 rounded-3xl opacity-30 blur-xl" style="background:linear-gradient(135deg,#1e3a8a,#0c4a6e);"></div>
+                        <div class="relative flex h-24 w-24 items-center justify-center rounded-3xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.25),inset 0 1px 0 rgba(255,255,255,0.08),0 8px 32px rgba(10,30,66,0.7);">
+                            <svg class="h-12 w-12" viewBox="0 0 24 24" fill="none">
+                                <circle cx="10.5" cy="10.5" r="6" stroke="rgba(255,255,255,0.65)" stroke-width="1.5"/>
+                                <circle cx="10.5" cy="10.5" r="3.2" stroke="rgba(255,255,255,0.28)" stroke-width="1"/>
+                                <line x1="5.8" y1="10.5" x2="8.3" y2="10.5" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+                                <line x1="12.7" y1="10.5" x2="15.2" y2="10.5" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+                                <line x1="10.5" y1="5.8" x2="10.5" y2="8.3" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+                                <line x1="10.5" y1="12.7" x2="10.5" y2="15.2" stroke="rgba(255,255,255,0.7)" stroke-width="1.1"/>
+                                <circle cx="10.5" cy="10.5" r="1.5" fill="white"/>
+                                <line x1="15.2" y1="15.2" x2="19.5" y2="19.5" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
                         </div>
                     </div>
                 </div>
