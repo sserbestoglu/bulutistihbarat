@@ -17,7 +17,6 @@ import {
     ArrowRight,
     Menu,
     X,
-    Cloud,
     Car,
     Activity,
     Target,
@@ -186,10 +185,14 @@ const features = [
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <!-- Logo -->
                 <a href="#" class="flex items-center gap-3">
-                    <div class="flex h-9 w-9 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                        <Cloud class="h-5 w-5 text-white" />
+                    <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 4px 14px rgba(14,58,138,0.55);">
+                        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                            <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
+                            <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
+                            <circle cx="12" cy="12" r="1.3" fill="white"/>
+                        </svg>
                     </div>
-                    <span class="text-lg font-bold text-white">Bulut <span style="background:linear-gradient(90deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
+                    <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
@@ -322,8 +325,12 @@ const features = [
                         <div class="absolute -inset-4 rounded-3xl opacity-20 blur-2xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);"></div>
                         <div class="relative rounded-3xl border p-8" style="border-color:rgba(56,189,248,0.15);background:rgba(255,255,255,0.03);">
                             <div class="mb-6 flex items-center gap-4">
-                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                                    <Cloud class="h-7 w-7 text-white" />
+                                <div class="flex h-14 w-14 items-center justify-center rounded-2xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 6px 20px rgba(14,58,138,0.5);">
+                                    <svg class="h-8 w-8" viewBox="0 0 24 24" fill="none">
+                                        <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" stroke-linejoin="round"/>
+                                        <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
+                                        <circle cx="12" cy="12" r="1.4" fill="white"/>
+                                    </svg>
                                 </div>
                                 <div>
                                     <div class="text-lg font-bold text-white">Bulut İstihbarat</div>
@@ -596,10 +603,14 @@ const features = [
                     <!-- Brand -->
                     <div class="md:col-span-2">
                         <div class="mb-4 flex items-center gap-3">
-                            <div class="flex h-9 w-9 items-center justify-center rounded-xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                                <Cloud class="h-5 w-5 text-white" />
+                            <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(150deg,#1e3a8a,#0c4a6e);box-shadow:0 0 0 1px rgba(125,211,252,0.18),0 4px 14px rgba(14,58,138,0.55);">
+                                <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                                    <path d="M2 12S5.5 5 12 5s10 7 10 7-3.5 7-10 7S2 12 2 12z" stroke="rgba(255,255,255,0.45)" stroke-width="1.5" stroke-linejoin="round"/>
+                                    <circle cx="12" cy="12" r="3.5" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/>
+                                    <circle cx="12" cy="12" r="1.3" fill="white"/>
+                                </svg>
                             </div>
-                            <span class="text-lg font-bold text-white">Bulut <span style="background:linear-gradient(90deg,#3b82f6,#06b6d4);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
+                            <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                         </div>
                         <p class="text-sm text-slate-400 leading-relaxed max-w-xs">
                             Uzman ekip ve geniş saha ağımızla hukuki uyumlu operasyon yönetimi.
