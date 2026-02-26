@@ -2,20 +2,13 @@
 deployment:
   tasks:
     - export APPPATH=/home2/bulutist/repositories/bulutistihbarat
-    - export PUBPATH=/home2/bulutist/public_html
-    - export PHP=/usr/local/bin/php
     - chmod -R 755 $APPPATH/storage
     - chmod -R 755 $APPPATH/bootstrap/cache
-    - if [ ! -L "$PUBPATH" ] || [ "$(readlink $PUBPATH)" != "$APPPATH/public" ]; then rm -rf $PUBPATH && ln -s $APPPATH/public $PUBPATH; fi
-    - if [ ! -f "$APPPATH/.env" ]; then cp $APPPATH/.env.example $APPPATH/.env; fi
-    - grep -q "^APP_KEY=$" $APPPATH/.env && $PHP $APPPATH/artisan key:generate --force || true
-    - $PHP $APPPATH/artisan down --retry=60 || true
-    - $PHP /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --working-dir=$APPPATH
-    - $PHP $APPPATH/artisan config:clear
-    - $PHP $APPPATH/artisan cache:clear
-    - $PHP $APPPATH/artisan route:clear
-    - $PHP $APPPATH/artisan view:clear
-    - $PHP $APPPATH/artisan migrate --force
-    - $PHP $APPPATH/artisan storage:link --force
-    - $PHP $APPPATH/artisan optimize
-    - $PHP $APPPATH/artisan up
+    - /usr/local/bin/php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --working-dir=$APPPATH
+    - /usr/local/bin/php $APPPATH/artisan config:clear
+    - /usr/local/bin/php $APPPATH/artisan cache:clear
+    - /usr/local/bin/php $APPPATH/artisan route:clear
+    - /usr/local/bin/php $APPPATH/artisan view:clear
+    - /usr/local/bin/php $APPPATH/artisan migrate --force
+    - /usr/local/bin/php $APPPATH/artisan storage:link --force
+    - /usr/local/bin/php $APPPATH/artisan optimize
