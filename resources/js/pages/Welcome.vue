@@ -28,6 +28,7 @@ onUnmounted(() => {
 });
 </script>
 
+
 <template>
     <Head title="Yapım Aşamasında – Bulut İstihbarat" />
 
