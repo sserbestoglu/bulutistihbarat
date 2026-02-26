@@ -1,15 +1,15 @@
 ---
 deployment:
   tasks:
-    - export APPPATH=/home2/bulutist/repositories/bulutistihbarat
-    - chmod -R 755 $APPPATH/storage
-    - chmod -R 755 $APPPATH/bootstrap/cache
-    - /bin/ln -sfn $APPPATH/public /home2/bulutist/public_html
-    - /usr/local/bin/php $APPPATH/artisan key:generate --force
-    - /usr/local/bin/php $APPPATH/artisan config:clear
-    - /usr/local/bin/php $APPPATH/artisan cache:clear
-    - /usr/local/bin/php $APPPATH/artisan route:clear
-    - /usr/local/bin/php $APPPATH/artisan view:clear
-    - /usr/local/bin/php $APPPATH/artisan migrate --force
-    - /usr/local/bin/php $APPPATH/artisan storage:link --force
-    - /usr/local/bin/php $APPPATH/artisan optimize
+    - chmod -R 755 /home2/bulutist/repositories/bulutistihbarat/storage
+    - chmod -R 755 /home2/bulutist/repositories/bulutistihbarat/bootstrap/cache
+    - /bin/ln -sfn /home2/bulutist/repositories/bulutistihbarat/public /home2/bulutist/public_html
+    - cp -n /home2/bulutist/repositories/bulutistihbarat/.env.example /home2/bulutist/repositories/bulutistihbarat/.env
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan key:generate --force
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan config:clear
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan cache:clear
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan route:clear
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan view:clear
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan migrate --force
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan storage:link --force
+    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan optimize
