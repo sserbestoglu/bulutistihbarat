@@ -5,7 +5,6 @@ deployment:
     - chmod -R 755 $APPPATH/storage
     - chmod -R 755 $APPPATH/bootstrap/cache
     - /bin/ln -sfn $APPPATH/public /home2/bulutist/public_html
-    - /usr/local/bin/php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --working-dir=$APPPATH
     - /usr/local/bin/php $APPPATH/artisan key:generate --force
     - /usr/local/bin/php $APPPATH/artisan config:clear
     - /usr/local/bin/php $APPPATH/artisan cache:clear
