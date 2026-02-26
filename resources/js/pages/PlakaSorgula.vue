@@ -39,17 +39,21 @@ async function handleSearch() {
     searched.value = false;
     result.value = null;
 
-    // Simulated API call
-    await new Promise(r => setTimeout(r, 1200));
-
-    loading.value = false;
-    searched.value = true;
-
-    // Demo: sorgu sonucu - gerçek uygulamada API'den gelecek
-    result.value = {
-        found: false,
-        plate: formatted,
-    };
+    try {
+        const response = await fetch(`https://acar.test/api/plate/search?plate=${encodeURIComponent(formatted)}`);
+        if (!response.ok) {
+            throw new Error('Sunucu hatası veya bağlantı sorunu.');
+        }
+        const data = await response.json();
+        result.value = { found: data.exists, plate: formatted };
+    } catch (e: any) {
+        console.error('API fetch error:', e);
+        error.value = e?.message || 'Bilinmeyen bir hata oluştu.';
+        result.value = null;
+    } finally {
+        loading.value = false;
+        searched.value = true;
+    }
 }
 
 function reset() {
@@ -200,21 +204,21 @@ function onInput(e: Event) {
                             <!-- NOT FOUND RESULT -->
                             <div v-if="!result.found" class="text-center">
                                 <div class="mb-4 flex justify-center">
-                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);">
-                                        <CheckCircle2 class="h-8 w-8" style="color:#22c55e;" />
+                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);">
+                                        <AlertCircle class="h-8 w-8" style="color:#ef4444;" />
                                     </div>
                                 </div>
-                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.15);">
-                                    <span class="text-2xl font-black tracking-widest" style="color:#22c55e;">{{ result.plate }}</span>
+                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);">
+                                    <span class="text-2xl font-black tracking-widest" style="color:#ef4444;">{{ result.plate }}</span>
                                 </div>
                                 <h3 class="mt-4 text-xl font-bold text-white">Araç Bulunamadı</h3>
                                 <p class="mt-2 text-slate-400 text-sm leading-relaxed">
                                     Bu plakaya ait araç, takip listemizde bulunmamaktadır.
                                     Araç; hacizli, yakalamalı veya çalıntı kayıtlı değildir.
                                 </p>
-                                <div class="mt-4 rounded-xl border p-4 text-left text-sm" style="border-color:rgba(56,189,248,0.1);background:rgba(56,189,248,0.04);">
+                                <div class="mt-4 rounded-xl border p-4 text-left text-sm" style="border-color:rgba(239,68,68,0.1);background:rgba(239,68,68,0.04);">
                                     <div class="flex items-start gap-2">
-                                        <Info class="h-4 w-4 mt-0.5 shrink-0" style="color:#38bdf8;" />
+                                        <Info class="h-4 w-4 mt-0.5 shrink-0" style="color:#ef4444;" />
                                         <p class="text-slate-400">
                                             Sonuç yalnızca Bulut İstihbarat sistemindeki kayıtlara göre verilmiştir.
                                             Resmi kayıtlar için ilgili kurumlara başvurunuz.
