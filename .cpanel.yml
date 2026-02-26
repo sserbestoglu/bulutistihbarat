@@ -1,11 +1,9 @@
 ---
 deployment:
   tasks:
-    - chmod -R 755 /home2/bulutist/repositories/bulutistihbarat/storage
-    - chmod -R 755 /home2/bulutist/repositories/bulutistihbarat/bootstrap/cache
+    - find /home2/bulutist/repositories/bulutistihbarat/storage -type d -exec chmod 755 {} \;
+    - find /home2/bulutist/repositories/bulutistihbarat/bootstrap/cache -type d -exec chmod 755 {} \;
     - cp -n /home2/bulutist/repositories/bulutistihbarat/.env.example /home2/bulutist/repositories/bulutistihbarat/.env
-    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/composer.phar install --no-dev --no-scripts --optimize-autoloader --working-dir=/home2/bulutist/repositories/bulutistihbarat
-    - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan key:generate --force
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan config:clear
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan cache:clear
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan route:clear

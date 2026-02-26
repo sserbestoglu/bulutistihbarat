@@ -1,7 +1,6 @@
 /.phpunit.cache
 /bootstrap/ssr
 /node_modules
-/vendor
 .DS_Store
 /public/hot
 /public/storage
