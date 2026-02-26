@@ -7,6 +7,7 @@ import { Shield, Wrench, Clock, Mail, Phone } from 'lucide-vue-next';
 const dots = ref('');
 let dotsInterval: ReturnType<typeof setInterval> | null = null;
 
+    
 // Floating particles
 const particles = Array.from({ length: 18 }, (_, i) => ({
     id: i,
