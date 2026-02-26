@@ -11,3 +11,7 @@ deployment:
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan migrate --force
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan storage:link --force
     - /usr/local/bin/php /home2/bulutist/repositories/bulutistihbarat/artisan optimize
+    - cp /home2/bulutist/repositories/bulutistihbarat/public_html_index.php /home2/bulutist/public_html/index.php
+    - cp /home2/bulutist/repositories/bulutistihbarat/public_html_htaccess /home2/bulutist/public_html/.htaccess
+    - /bin/ln -sfn /home2/bulutist/repositories/bulutistihbarat/public/build /home2/bulutist/public_html/build
+    - /bin/ln -sfn /home2/bulutist/repositories/bulutistihbarat/public/storage /home2/bulutist/public_html/storage
