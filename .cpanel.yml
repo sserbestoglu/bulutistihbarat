@@ -1,14 +1,4 @@
 ---
 deployment:
   tasks:
-    - export APPPATH=/home2/bulutist/repositories/bulutistihbarat
-    - chmod -R 755 $APPPATH/storage
-    - chmod -R 755 $APPPATH/bootstrap/cache
-    - /usr/local/bin/php /usr/local/bin/composer install --no-dev --optimize-autoloader --no-interaction --working-dir=$APPPATH
-    - /usr/local/bin/php $APPPATH/artisan config:clear
-    - /usr/local/bin/php $APPPATH/artisan cache:clear
-    - /usr/local/bin/php $APPPATH/artisan route:clear
-    - /usr/local/bin/php $APPPATH/artisan view:clear
-    - /usr/local/bin/php $APPPATH/artisan migrate --force
-    - /usr/local/bin/php $APPPATH/artisan storage:link --force
-    - /usr/local/bin/php $APPPATH/artisan optimize
+    - /bin/echo "ok"
