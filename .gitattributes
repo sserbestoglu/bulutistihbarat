@@ -15,6 +15,10 @@
 # public/build icindeki tum dosyalar binary - line ending donusumu olmasin
 public/build/** binary
 
+# vendor icindeki tum dosyalar binary - line ending donusumu olmasin
+vendor/** binary
+*.bat binary
+
 *.png binary
 *.jpg binary
 *.jpeg binary
