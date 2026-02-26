@@ -1,0 +1,3 @@
+RewriteEngine On
+RewriteCond %{REQUEST_URI} !^/repositories/bulutistihbarat/public/
+RewriteRule ^(.*)$ /repositories/bulutistihbarat/public/$1 [L,QSA]
