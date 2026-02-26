@@ -12,6 +12,9 @@
 *.yml text eol=lf
 *.yaml text eol=lf
 
+# public/build icindeki tum dosyalar binary - line ending donusumu olmasin
+public/build/** binary
+
 *.png binary
 *.jpg binary
 *.jpeg binary
