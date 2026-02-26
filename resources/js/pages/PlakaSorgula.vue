@@ -40,15 +40,24 @@ async function handleSearch() {
     result.value = null;
 
     try {
-        const response = await fetch(`https://acar.test/api/plate/search?plate=${encodeURIComponent(formatted)}`);
+        const response = await fetch(`https://cobweb.acarhukuk.com/api/plate/search?plate=${encodeURIComponent(formatted)}`);
+        if (response.status === 429) {
+            throw new Error('Çok fazla sorgulama yaptınız. Lütfen 30 dakika sonra tekrar deneyin.');
+        }
+        if (response.status === 404) {
+            throw new Error('Sorgu servisi şu an kullanılamıyor. Lütfen daha sonra tekrar deneyin.');
+        }
+        if (response.status === 500) {
+            throw new Error('Sunucuda bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
+        }
         if (!response.ok) {
-            throw new Error('Sunucu hatası veya bağlantı sorunu.');
+            throw new Error('Sorgu gerçekleştirilemedi. Lütfen tekrar deneyin.');
         }
         const data = await response.json();
         result.value = { found: data.exists, plate: formatted };
     } catch (e: any) {
         console.error('API fetch error:', e);
-        error.value = e?.message || 'Bilinmeyen bir hata oluştu.';
+        error.value = e?.message || 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.';
         result.value = null;
     } finally {
         loading.value = false;
@@ -230,12 +239,12 @@ function onInput(e: Event) {
                             <!-- FOUND RESULT -->
                             <div v-else class="text-center">
                                 <div class="mb-4 flex justify-center">
-                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);">
-                                        <AlertCircle class="h-8 w-8" style="color:#ef4444;" />
+                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);">
+                                        <CheckCircle2 class="h-8 w-8" style="color:#22c55e;" />
                                     </div>
                                 </div>
-                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);">
-                                    <span class="text-2xl font-black tracking-widest" style="color:#ef4444;">{{ result.plate }}</span>
+                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.15);">
+                                    <span class="text-2xl font-black tracking-widest" style="color:#22c55e;">{{ result.plate }}</span>
                                 </div>
                                 <h3 class="mt-4 text-xl font-bold text-white">Araç Listede Mevcut</h3>
                                 <p class="mt-2 text-slate-400 text-sm">
