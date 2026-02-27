@@ -11,4 +11,8 @@ deployment:
     - cp /home2/bulutist/repositories/bulutistihbarat/public_html_htaccess /home2/bulutist/public_html/.htaccess
     - rm -rf /home2/bulutist/public_html/build
     - cp -r /home2/bulutist/repositories/bulutistihbarat/public/build /home2/bulutist/public_html/build
+    - cp /home2/bulutist/repositories/bulutistihbarat/public/favicon.svg /home2/bulutist/public_html/favicon.svg
+    - cp /home2/bulutist/repositories/bulutistihbarat/public/favicon.ico /home2/bulutist/public_html/favicon.ico
+    - cp /home2/bulutist/repositories/bulutistihbarat/public/apple-touch-icon.png /home2/bulutist/public_html/apple-touch-icon.png
+    - cp /home2/bulutist/repositories/bulutistihbarat/public/robots.txt /home2/bulutist/public_html/robots.txt
     - /bin/ln -sfn /home2/bulutist/repositories/bulutistihbarat/public/storage /home2/bulutist/public_html/storage
