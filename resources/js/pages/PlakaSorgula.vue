@@ -1,13 +1,18 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { ref } from 'vue';
-import { Search, ArrowLeft, Shield, AlertCircle, CheckCircle2, Car, Info, RotateCcw } from 'lucide-vue-next';
+import { ref, onMounted, onUnmounted } from 'vue';
+import { Search, ArrowLeft, Shield, AlertCircle, CheckCircle2, Car, Info, RotateCcw, Phone, Mail, MapPin, Instagram } from 'lucide-vue-next';
 
 const plate = ref('');
 const loading = ref(false);
 const searched = ref(false);
 const result = ref<null | { found: boolean; plate: string }>(null);
 const error = ref('');
+
+const scrolled = ref(false);
+const handleScroll = () => { scrolled.value = window.scrollY > 50; };
+onMounted(() => window.addEventListener('scroll', handleScroll));
+onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
 // Basit Türk plaka formatı doğrulama
 function validatePlate(value: string): boolean {
@@ -75,14 +80,16 @@ function reset() {
 
 function onInput(e: Event) {
     const target = e.target as HTMLInputElement;
-    // Otomatik büyük harf
-    plate.value = target.value.toUpperCase();
+    // Otomatik büyük harf ve boşluk silme
+    const cleaned = target.value.replace(/\s/g, '').toUpperCase();
+    plate.value = cleaned;
+    target.value = cleaned;
     if (error.value) error.value = '';
 }
 </script>
 
 <template>
-    <Head title="Plaka Sorgula – Bulut İstihbarat">
+    <Head title="Araç Sorgula – Bulut İstihbarat">
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
@@ -91,8 +98,11 @@ function onInput(e: Event) {
     <div class="min-h-screen" style="background:#030b18; font-family:'Inter',sans-serif;">
 
         <!-- Navbar -->
-        <nav class="border-b px-6 py-4" style="border-color:rgba(255,255,255,0.06);background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);">
-            <div class="mx-auto flex max-w-5xl items-center justify-between">
+        <nav
+            :class="['fixed top-0 left-0 right-0 z-50 transition-all duration-300', scrolled ? 'py-3' : 'py-4']"
+            :style="scrolled ? 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);' : 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);'"
+        >
+            <div class="mx-auto flex max-w-5xl items-center justify-between px-6">
                 <Link href="/" class="flex items-center gap-3">
                     <div class="flex h-10 w-10 items-center justify-center rounded-xl" style="background:linear-gradient(145deg,#1a3461,#0d2d4a);box-shadow:0 0 0 1px rgba(99,179,237,0.22),inset 0 1px 0 rgba(255,255,255,0.07),0 4px 16px rgba(10,30,66,0.65);">
                         <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
@@ -116,7 +126,7 @@ function onInput(e: Event) {
         </nav>
 
         <!-- Main Content -->
-        <div class="mx-auto max-w-2xl px-6 py-16">
+        <div class="mx-auto max-w-2xl px-6 py-16 pt-28">
 
             <!-- Header -->
             <div class="mb-12 text-center">
@@ -137,7 +147,7 @@ function onInput(e: Event) {
                         </div>
                     </div>
                 </div>
-                <h1 class="mb-3 text-4xl font-black text-white">Plaka Sorgulama</h1>
+                <h1 class="mb-3 text-4xl font-black text-white">Araç Sorgulama</h1>
                 <p class="text-slate-400 text-lg leading-relaxed">
                     Araç plaka numarasını girerek sistemimizde kayıtlı bilgilere ulaşın.
                 </p>
@@ -164,7 +174,7 @@ function onInput(e: Event) {
                                 v-model="plate"
                                 type="text"
                                 maxlength="10"
-                                placeholder="34 ABC 123"
+                                placeholder="34ABC123"
                                 class="w-full rounded-2xl border bg-transparent py-4 pr-4 text-center text-2xl font-black tracking-[0.2em] text-white outline-none transition-all placeholder:text-slate-600 placeholder:text-lg placeholder:font-normal placeholder:tracking-normal"
                                 :style="`border-color:${error ? 'rgba(239,68,68,0.5)' : 'rgba(56,189,248,0.25)'};padding-left:4.5rem;`"
                                 style2="border-color:rgba(56,189,248,0.25);"
@@ -180,7 +190,7 @@ function onInput(e: Event) {
                         <!-- Format hint -->
                         <div v-else class="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
                             <Info class="h-3.5 w-3.5" />
-                            Örnek: 34ABC123, 06A1234, 35BC456
+                            Örnek: 34ABC123, 06A1234, 35BC456. Harf ve rakamlar arasında boşluk bırakmayınız.
                         </div>
                     </div>
 
@@ -248,9 +258,51 @@ function onInput(e: Event) {
                                 </div>
                                 <h3 class="mt-4 text-xl font-bold text-white">Araç Listede Mevcut</h3>
                                 <p class="mt-2 text-slate-400 text-sm">
-                                    Bu plakaya ait araç takip listemizde bulunmaktadır.
-                                    Lütfen bizimle iletişime geçin.
+                                    Araç listede bulunmaktadır, bizimle iletişime geçin ve <span class="text-yellow-400 font-semibold">ödül kazanın!</span>
                                 </p>
+
+                                <!-- Contact Cards -->
+                                <div class="mt-6 grid gap-3 sm:grid-cols-2 text-left">
+                                    <a href="tel:02167400840" class="rounded-2xl border p-4 flex items-center gap-3 transition-all hover:border-sky-500/40 hover:bg-white/5" style="border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+                                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                                            <Phone class="h-5 w-5" style="color:#60a5fa;" />
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-slate-400">Telefon</div>
+                                            <div class="text-white font-semibold text-sm">0216 740 08 40</div>
+                                            <div class="text-slate-400 text-xs mt-0.5">Pzt–Cum 08:30–18:00</div>
+                                        </div>
+                                    </a>
+                                    <a href="mailto:info@bulutistihbarat.com" class="rounded-2xl border p-4 flex items-center gap-3 transition-all hover:border-sky-500/40 hover:bg-white/5" style="border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+                                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                                            <Mail class="h-5 w-5" style="color:#60a5fa;" />
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-slate-400">E-posta</div>
+                                            <div class="text-white font-semibold text-sm">info@bulutistihbarat.com</div>
+                                            <div class="text-slate-400 text-xs mt-0.5">7/24 yanıt veriyoruz</div>
+                                        </div>
+                                    </a>
+                                    <div class="rounded-2xl border p-4 flex items-center gap-3" style="border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+                                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                                            <MapPin class="h-5 w-5" style="color:#60a5fa;" />
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-slate-400">Adres</div>
+                                            <div class="text-white font-semibold text-sm leading-snug">Çavuş Mah. Çayırlar Cad. No:129/3 D:6 Şile/İstanbul</div>
+                                        </div>
+                                    </div>
+                                    <a href="https://www.instagram.com/bulutistihbarat" target="_blank" rel="noopener noreferrer" class="rounded-2xl border p-4 flex items-center gap-3 transition-all hover:border-sky-500/40 hover:bg-white/5" style="border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
+                                        <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
+                                            <Instagram class="h-5 w-5" style="color:#60a5fa;" />
+                                        </div>
+                                        <div>
+                                            <div class="text-xs text-slate-400">Instagram</div>
+                                            <div class="text-white font-semibold text-sm">@bulutistihbarat</div>
+                                            <div class="text-slate-400 text-xs mt-0.5">7/24 yanıt veriyoruz</div>
+                                        </div>
+                                    </a>
+                                </div>
                             </div>
 
                             <!-- New Search Button -->
@@ -267,30 +319,6 @@ function onInput(e: Event) {
                 </Transition>
             </div>
 
-            <!-- Info Cards -->
-            <div class="mt-8 grid gap-4 sm:grid-cols-2">
-                <div class="rounded-2xl border p-5" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
-                    <div class="mb-3 flex items-center gap-2">
-                        <Shield class="h-5 w-5" style="color:#38bdf8;" />
-                        <span class="text-sm font-semibold text-white">Güvenli Sorgulama</span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Tüm sorgular KVKK kapsamında güvenli şekilde gerçekleştirilir.
-                        Kişisel veriler korunur.
-                    </p>
-                </div>
-                <div class="rounded-2xl border p-5" style="border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);">
-                    <div class="mb-3 flex items-center gap-2">
-                        <Car class="h-5 w-5" style="color:#38bdf8;" />
-                        <span class="text-sm font-semibold text-white">Anlık Sonuç</span>
-                    </div>
-                    <p class="text-xs text-slate-400 leading-relaxed">
-                        Sistemimiz 7/24 aktif olup sorgu sonuçları anlık olarak
-                        veritabanımızdan çekilmektedir.
-                    </p>
-                </div>
-            </div>
-
             <!-- Back to Home -->
             <div class="mt-8 text-center">
                 <Link href="/" class="inline-flex items-center gap-2 text-sm text-slate-500 transition-colors hover:text-slate-300">
@@ -303,7 +331,7 @@ function onInput(e: Event) {
 
         <!-- Footer -->
         <div class="border-t py-8 text-center" style="border-color:rgba(255,255,255,0.06);">
-            <p class="text-sm text-slate-600">© 2026 Bulut İstihbarat · KVKK Uyumlu</p>
+            <p class="text-sm text-slate-600">© 2026 Bulut İstihbarat</p>
         </div>
     </div>
 </template>
