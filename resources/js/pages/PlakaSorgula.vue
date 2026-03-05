@@ -103,9 +103,9 @@ function onInput(e: Event) {
             :style="scrolled ? 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);' : 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,0.06);'"
         >
             <div class="mx-auto flex max-w-5xl items-center justify-between px-6">
-                <Link href="/" class="flex items-center gap-3">
-                    <div class="h-14 w-14 shrink-0 overflow-hidden" style="background:url('/new_icon.png') center/160% no-repeat;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
+                <Link href="/" class="flex items-center">
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-48 w-48 -my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                    <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </Link>
                 <Link href="/" class="flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-slate-300 transition-all hover:text-white hover:border-slate-400" style="border-color:rgba(255,255,255,0.1);">
                     <ArrowLeft class="h-4 w-4" />

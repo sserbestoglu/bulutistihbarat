@@ -185,9 +185,9 @@ const features = [
         >
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <!-- Logo -->
-                <a href="#" class="flex items-center gap-3 group">
-                    <div class="h-14 w-14 shrink-0 overflow-hidden" style="background:url('/new_icon.png') center/160% no-repeat;transition:transform 0.2s;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'"></div>
-                    <span class="text-lg font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
+                <a href="#" class="flex items-center group">
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-48 w-48 -my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                    <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </a>
 
                 <!-- Desktop Menu -->
