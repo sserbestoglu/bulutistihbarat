@@ -252,39 +252,6 @@ const features = [
             </div>
         </section>
 
-        <!-- ===== NEDEN BİZ ===== -->
-        <section class="py-28">
-            <div class="mx-auto max-w-7xl px-6">
-                <div class="mb-16 text-center">
-                    <div class="mb-4 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-sm font-medium" style="background:rgba(59,130,246,0.1);color:#60a5fa;border:1px solid rgba(59,130,246,0.2);">
-                        Neden Bulut İstihbarat?
-                    </div>
-                    <h2 class="mb-4 text-4xl font-black text-white">Farkımız</h2>
-                    <p class="mx-auto max-w-2xl text-slate-400 text-lg">Rakiplerimizden bizi ayıran üç temel özellik</p>
-                </div>
-
-                <div class="grid gap-8 lg:grid-cols-3">
-                    <div
-                        v-for="(feat, i) in features"
-                        :key="feat.title"
-                        class="rounded-3xl border p-8"
-                        :style="i===0?'border-color:rgba(59,130,246,0.3);background:rgba(59,130,246,0.05);':'border-color:rgba(255,255,255,0.06);background:rgba(255,255,255,0.02);'"
-                    >
-                        <div class="mb-6 flex h-14 w-14 items-center justify-center rounded-2xl" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">
-                            <component :is="feat.icon" class="h-7 w-7 text-white" />
-                        </div>
-                        <h3 class="mb-4 text-xl font-bold text-white">{{ feat.title }}</h3>
-                        <p class="mb-6 text-slate-400 leading-relaxed text-sm">{{ feat.desc }}</p>
-                        <ul class="space-y-2.5">
-                            <li v-for="item in feat.items" :key="item" class="flex items-center gap-2.5 text-sm">
-                                <CheckCircle class="h-4 w-4 shrink-0" style="color:#06b6d4;" />
-                                <span class="text-slate-300">{{ item }}</span>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- ===== ARAÇ SORGULA CTA ===== -->
         <section class="py-20">

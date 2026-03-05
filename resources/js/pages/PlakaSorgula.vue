@@ -199,7 +199,7 @@ function onInput(e: Event) {
                         </template>
                         <template v-else>
                             <Search class="h-5 w-5" />
-                            Plakayı Sorgula
+                            Araç Sorgula
                         </template>
                     </button>
                 </form>
