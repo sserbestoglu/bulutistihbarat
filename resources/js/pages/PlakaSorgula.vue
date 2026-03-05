@@ -103,7 +103,7 @@ function onInput(e: Event) {
             :style="scrolled ? 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);' : 'background:transparent;'"
         >
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
-                <Link href="/" class="flex items-center">
+                <Link href="/" class="flex items-center gap-4 md:gap-1">
                     <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                     <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </Link>
