@@ -107,10 +107,6 @@ function onInput(e: Event) {
                     <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                     <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </Link>
-                <Link href="/" class="hidden md:flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-slate-300 transition-all hover:text-white hover:border-slate-400" style="border-color:rgba(255,255,255,0.1);">
-                    <ArrowLeft class="h-4 w-4" />
-                    Ana Sayfa
-                </Link>
             </div>
         </nav>
 
@@ -306,14 +302,6 @@ function onInput(e: Event) {
                         </div>
                     </div>
                 </Transition>
-            </div>
-
-            <!-- Back to Home -->
-            <div class="mt-8 text-center">
-                <Link href="/" class="inline-flex items-center gap-2 text-sm text-slate-500 transition-colors hover:text-slate-300">
-                    <ArrowLeft class="h-4 w-4" />
-                    Ana Sayfaya Dön
-                </Link>
             </div>
 
         </div>
