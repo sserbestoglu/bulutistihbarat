@@ -186,7 +186,7 @@ const features = [
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <!-- Logo -->
                 <a href="#" class="flex items-center group">
-                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-48 w-48 -my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                     <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </a>
 
@@ -334,7 +334,10 @@ const features = [
             </div>
         </section>
 
-
+        <!-- Footer -->
+        <div class="border-t py-8 text-center" style="border-color:rgba(255,255,255,0.06);">
+            <p class="text-sm text-slate-600">© 2026 Bulut İstihbarat - Tüm Hakları Saklıdır</p>
+        </div>
 
     </div>
 </template>

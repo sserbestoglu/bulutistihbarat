@@ -104,10 +104,10 @@ function onInput(e: Event) {
         >
             <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
                 <Link href="/" class="flex items-center">
-                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-48 w-48 -my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                     <span class="text-2xl font-bold tracking-tight text-white">Bulut <span style="background:linear-gradient(90deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">İstihbarat</span></span>
                 </Link>
-                <Link href="/" class="flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-slate-300 transition-all hover:text-white hover:border-slate-400" style="border-color:rgba(255,255,255,0.1);">
+                <Link href="/" class="hidden md:flex items-center gap-2 rounded-xl border px-4 py-2 text-sm text-slate-300 transition-all hover:text-white hover:border-slate-400" style="border-color:rgba(255,255,255,0.1);">
                     <ArrowLeft class="h-4 w-4" />
                     Ana Sayfa
                 </Link>
@@ -320,7 +320,7 @@ function onInput(e: Event) {
 
         <!-- Footer -->
         <div class="border-t py-8 text-center" style="border-color:rgba(255,255,255,0.06);">
-            <p class="text-sm text-slate-600">© 2026 Bulut İstihbarat</p>
+            <p class="text-sm text-slate-600">© 2026 Bulut İstihbarat - Tüm Hakları Saklıdır</p>
         </div>
     </div>
 </template>
