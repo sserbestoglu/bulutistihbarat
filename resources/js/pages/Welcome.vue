@@ -186,7 +186,7 @@ const features = [
             <div class="mx-auto flex max-w-7xl items-center justify-end md:justify-between px-6 relative">
                 <!-- Logo -->
                 <a href="#" class="flex items-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
-                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 md:h-48 md:w-48 md:-my-12 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 md:h-48 md:w-48 md:-my-16 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                 </a>
 
                 <!-- Desktop Menu -->
