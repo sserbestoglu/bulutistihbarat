@@ -180,13 +180,13 @@ const features = [
 
         <!-- ===== NAVBAR ===== -->
         <nav
-            :class="['fixed top-0 left-0 right-0 z-50 transition-all duration-300', scrolled ? 'py-3' : 'py-5']"
+            :class="['fixed top-0 left-0 right-0 z-50 transition-all duration-300', scrolled ? 'py-8' : 'py-12']"
             :style="scrolled ? 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);' : 'background:transparent;'"
         >
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
+            <div class="mx-auto flex max-w-7xl items-center justify-end md:justify-between px-6 relative">
                 <!-- Logo -->
-                <a href="#" class="flex items-center">
-                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-12 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
+                <a href="#" class="flex items-center absolute left-1/2 -translate-x-1/2 md:static md:translate-x-0">
+                    <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 md:h-48 md:w-48 md:-my-12 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                 </a>
 
                 <!-- Desktop Menu -->
@@ -205,7 +205,7 @@ const features = [
             </div>
 
             <!-- Mobile Menu -->
-            <div v-if="mobileMenuOpen" class="md:hidden px-6 pb-4 pt-2 border-t mt-3" style="background:rgba(3,11,24,0.98);border-color:rgba(56,189,248,0.1);">
+            <div v-if="mobileMenuOpen" class="md:hidden px-6 pb-4 pt-2 border-t mt-8" style="background:rgba(3,11,24,0.98);border-color:rgba(56,189,248,0.1);">
                 <div class="flex flex-col gap-3">
                     <a href="#iletisim" @click="mobileMenuOpen=false" class="text-sm text-slate-300 py-2 hover:text-white">İletişim</a>
                     <Link href="/plaka-sorgula" class="rounded-lg px-5 py-2.5 text-sm font-semibold text-white text-center mt-2" style="background:linear-gradient(135deg,#3b82f6,#06b6d4);">

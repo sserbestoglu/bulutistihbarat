@@ -102,7 +102,7 @@ function onInput(e: Event) {
             :class="['fixed top-0 left-0 right-0 z-50 transition-all duration-300', scrolled ? 'py-3' : 'py-5']"
             :style="scrolled ? 'background:rgba(3,11,24,0.95);backdrop-filter:blur(20px);border-bottom:1px solid rgba(56,189,248,0.1);' : 'background:transparent;'"
         >
-            <div class="mx-auto flex max-w-7xl items-center justify-between px-6">
+            <div class="mx-auto flex max-w-7xl items-center justify-center md:justify-start px-6">
                 <Link href="/" class="flex items-center">
                     <img src="/new_icon.png" alt="Bulut İstihbarat Logo" class="h-32 w-32 -my-8 md:h-48 md:w-48 md:-my-12 shrink-0 object-contain transition-transform duration-200 hover:scale-110" />
                 </Link>
