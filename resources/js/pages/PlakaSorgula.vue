@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { Head, Link } from '@inertiajs/vue3';
-import { ref, onMounted, onUnmounted } from 'vue';
-import { Search, ArrowLeft, Shield, AlertCircle, CheckCircle2, Car, Info, RotateCcw, Phone, Mail, MapPin, Instagram } from 'lucide-vue-next';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { Search, Shield, AlertCircle, CheckCircle2, Info, RotateCcw, Phone, Mail, MapPin, Instagram } from 'lucide-vue-next';
 
-const plate = ref('');
+const plateInput = ref('');
 const loading = ref(false);
 const searched = ref(false);
-const result = ref<null | { found: boolean; plate: string }>(null);
+const foundPlates = ref<string[]>([]);
 const error = ref('');
 
 const scrolled = ref(false);
@@ -14,38 +14,56 @@ const handleScroll = () => { scrolled.value = window.scrollY > 50; };
 onMounted(() => window.addEventListener('scroll', handleScroll));
 onUnmounted(() => window.removeEventListener('scroll', handleScroll));
 
-// Basit Türk plaka formatı doğrulama
-function validatePlate(value: string): boolean {
-    const cleaned = value.replace(/\s/g, '').toUpperCase();
-    // Format: 2 rakam + 1-3 harf + 2-4 rakam veya 2 rakam + 1-3 harf + 2-4 harf+rakam
-    const regex = /^(\d{2})([A-Z]{1,3})(\d{2,4}|\d{1,3}[A-Z]{1,2})$/;
-    return regex.test(cleaned);
-}
+const plateRegex = /^(\d{2})([A-Z]{1,3})(\d{2,4}|\d{1,3}[A-Z]{1,2})$/;
 
 function formatPlate(value: string): string {
     return value.replace(/\s/g, '').toUpperCase();
 }
 
+function validatePlate(value: string): boolean {
+    return plateRegex.test(value);
+}
+
+// Textarea'dan plaka listesini parse et (satır, virgül veya boşlukla ayrılmış)
+const parsedPlates = computed<string[]>(() => {
+    return plateInput.value
+        .split(/[\n,;\s]+/)
+        .map(formatPlate)
+        .filter(p => p.length > 0);
+});
+
+const invalidPlates = computed<string[]>(() => {
+    return parsedPlates.value.filter(p => !validatePlate(p));
+});
+
+const validPlates = computed<string[]>(() => {
+    return parsedPlates.value.filter(p => validatePlate(p));
+});
+
 async function handleSearch() {
     error.value = '';
-    const formatted = formatPlate(plate.value);
 
-    if (!formatted) {
-        error.value = 'Lütfen bir plaka numarası girin.';
+    if (parsedPlates.value.length === 0) {
+        error.value = 'Lütfen en az bir plaka numarası girin.';
         return;
     }
 
-    if (!validatePlate(formatted)) {
-        error.value = "Geçersiz plaka formatı. Örnek: 34 ABC 123 veya 06 A 1234";
+    if (invalidPlates.value.length > 0) {
+        error.value = `Geçersiz plaka formatı: ${invalidPlates.value.join(', ')}`;
         return;
     }
 
     loading.value = true;
     searched.value = false;
-    result.value = null;
+    foundPlates.value = [];
 
     try {
-        const response = await fetch(`https://cobweb.acarhukuk.com/api/plate/search?plate=${encodeURIComponent(formatted)}`);
+        const response = await fetch('https://cobweb.acarhukuk.com/api/plate/search-bulk', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ plates: validPlates.value }),
+        });
+
         if (response.status === 429) {
             throw new Error('Çok fazla sorgulama yaptınız. Lütfen 30 dakika sonra tekrar deneyin.');
         }
@@ -58,12 +76,14 @@ async function handleSearch() {
         if (!response.ok) {
             throw new Error('Sorgu gerçekleştirilemedi. Lütfen tekrar deneyin.');
         }
-        const data = await response.json();
-        result.value = { found: data.exists, plate: formatted };
+
+        // Beklenen yanıt: { "found": ["34ABC123", ...] }
+        const data = await response.json() as { found: string[] };
+        foundPlates.value = data.found ?? [];
     } catch (e: any) {
         console.error('API fetch error:', e);
         error.value = e?.message || 'Bağlantı hatası. İnternet bağlantınızı kontrol edin.';
-        result.value = null;
+        foundPlates.value = [];
     } finally {
         loading.value = false;
         searched.value = true;
@@ -71,21 +91,18 @@ async function handleSearch() {
 }
 
 function reset() {
-    plate.value = '';
+    plateInput.value = '';
     searched.value = false;
-    result.value = null;
+    foundPlates.value = [];
     error.value = '';
     loading.value = false;
 }
 
-function onInput(e: Event) {
-    const target = e.target as HTMLInputElement;
-    // Otomatik büyük harf ve boşluk silme
-    const cleaned = target.value.replace(/\s/g, '').toUpperCase();
-    plate.value = cleaned;
-    target.value = cleaned;
+function onInput() {
     if (error.value) error.value = '';
 }
+
+
 </script>
 
 <template>
@@ -146,25 +163,33 @@ function onInput(e: Event) {
                 <form @submit.prevent="handleSearch">
                     <!-- Plate Input -->
                     <div class="mb-2">
-                        <label class="mb-3 block text-sm font-medium text-slate-300">Plaka Numarası</label>
-                        <div class="relative">
-                            <!-- Turkish plate prefix decoration -->
-                            <div class="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                                <div class="flex h-7 w-5 items-center justify-center rounded-sm text-xs font-black text-white" style="background:#0032A0;">
-                                    TR
-                                </div>
-                            </div>
-                            <input
-                                v-model="plate"
-                                type="text"
-                                maxlength="10"
-                                placeholder="34ABC123"
-                                class="w-full rounded-2xl border bg-transparent py-4 pr-4 text-center text-2xl font-black tracking-[0.2em] text-white outline-none transition-all placeholder:text-slate-600 placeholder:text-lg placeholder:font-normal placeholder:tracking-normal"
-                                :style="`border-color:${error ? 'rgba(239,68,68,0.5)' : 'rgba(56,189,248,0.25)'};padding-left:4.5rem;`"
-                                style2="border-color:rgba(56,189,248,0.25);"
-                                @input="onInput"
-                                :disabled="loading"
-                            />
+                        <label class="mb-3 block text-sm font-medium text-slate-300">
+                            Plaka Numaraları
+                            <span v-if="parsedPlates.length > 0" class="ml-2 rounded-full px-2 py-0.5 text-xs font-normal" style="background:rgba(56,189,248,0.12);color:#38bdf8;">
+                                {{ parsedPlates.length }} plaka
+                            </span>
+                        </label>
+                        <textarea
+                            v-model="plateInput"
+                            rows="6"
+                            placeholder="Her satıra bir plaka girin veya yapıştırın:&#10;34ABC123&#10;06A1234&#10;35BC456"
+                            class="w-full rounded-2xl border bg-transparent px-4 py-4 text-base font-semibold tracking-wider text-white outline-none transition-all resize-none placeholder:text-slate-600 placeholder:font-normal placeholder:tracking-normal"
+                            :style="`border-color:${error ? 'rgba(239,68,68,0.5)' : 'rgba(56,189,248,0.25)'};`"
+                            @input="onInput"
+                            :disabled="loading"
+                        />
+                        <!-- Parsed plate tags preview -->
+                        <div v-if="parsedPlates.length > 0 && !searched" class="mt-2 flex flex-wrap gap-1.5">
+                            <span
+                                v-for="p in parsedPlates"
+                                :key="p"
+                                class="rounded-lg px-2 py-0.5 text-xs font-bold tracking-wider"
+                                :style="validatePlate(p)
+                                    ? 'background:rgba(56,189,248,0.1);color:#38bdf8;border:1px solid rgba(56,189,248,0.25);'
+                                    : 'background:rgba(239,68,68,0.1);color:#ef4444;border:1px solid rgba(239,68,68,0.3);'"
+                            >
+                                {{ p }}
+                            </span>
                         </div>
                         <!-- Error message -->
                         <div v-if="error" class="mt-2 flex items-center gap-2 text-sm text-red-400">
@@ -174,16 +199,16 @@ function onInput(e: Event) {
                         <!-- Format hint -->
                         <div v-else class="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
                             <Info class="h-3.5 w-3.5" />
-                            Örnek: 34ABC123, 06A1234, 35BC456. Harf ve rakamlar arasında boşluk bırakmayınız.
+                            Her satıra veya virgülle ayrılmış olarak girebilirsiniz. Örn: 34ABC123, 06A1234
                         </div>
                     </div>
 
                     <!-- Submit Button -->
                     <button
                         type="submit"
-                        :disabled="loading || !plate"
+                        :disabled="loading || parsedPlates.length === 0"
                         class="mt-6 flex w-full items-center justify-center gap-2 rounded-2xl py-4 text-base font-semibold text-white transition-all"
-                        :style="loading || !plate ? 'background:rgba(59,130,246,0.3);cursor:not-allowed;' : 'background:linear-gradient(135deg,#3b82f6,#06b6d4);'"
+                        :style="loading || parsedPlates.length === 0 ? 'background:rgba(59,130,246,0.3);cursor:not-allowed;' : 'background:linear-gradient(135deg,#3b82f6,#06b6d4);'"
                     >
                         <template v-if="loading">
                             <svg class="h-5 w-5 animate-spin" fill="none" viewBox="0 0 24 24">
@@ -194,30 +219,26 @@ function onInput(e: Event) {
                         </template>
                         <template v-else>
                             <Search class="h-5 w-5" />
-                            Araç Sorgula
+                            {{ validPlates.length > 1 ? `${validPlates.length} Aracı Sorgula` : 'Araç Sorgula' }}
                         </template>
                     </button>
                 </form>
 
                 <!-- RESULTS -->
                 <Transition name="fade-slide">
-                    <div v-if="searched && result" class="mt-8">
+                    <div v-if="searched" class="mt-8">
                         <div class="border-t pt-8" style="border-color:rgba(255,255,255,0.06);">
 
-                            <!-- NOT FOUND RESULT -->
-                            <div v-if="!result.found" class="text-center">
+                            <!-- NONE FOUND -->
+                            <div v-if="foundPlates.length === 0" class="text-center">
                                 <div class="mb-4 flex justify-center">
                                     <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(239,68,68,0.1);border:1px solid rgba(239,68,68,0.3);">
                                         <AlertCircle class="h-8 w-8" style="color:#ef4444;" />
                                     </div>
                                 </div>
-                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.2);">
-                                    <span class="text-2xl font-black tracking-widest" style="color:#ef4444;">{{ result.plate }}</span>
-                                </div>
-                                <h3 class="mt-4 text-xl font-bold text-white">Araç Bulunamadı</h3>
+                                <h3 class="text-xl font-bold text-white">Araç Bulunamadı</h3>
                                 <p class="mt-2 text-slate-400 text-sm leading-relaxed">
-                                    Bu plakaya ait araç, takip listemizde bulunmamaktadır.
-                                    Araç; hacizli, yakalamalı veya çalıntı kayıtlı değildir.
+                                    Sorgulanan plakalardan hiçbiri sistemimizde bulunamadı.
                                 </p>
                                 <div class="mt-4 rounded-xl border p-4 text-left text-sm" style="border-color:rgba(239,68,68,0.1);background:rgba(239,68,68,0.04);">
                                     <div class="flex items-start gap-2">
@@ -230,23 +251,35 @@ function onInput(e: Event) {
                                 </div>
                             </div>
 
-                            <!-- FOUND RESULT -->
-                            <div v-else class="text-center">
-                                <div class="mb-4 flex justify-center">
-                                    <div class="flex h-16 w-16 items-center justify-center rounded-2xl" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);">
-                                        <CheckCircle2 class="h-8 w-8" style="color:#22c55e;" />
+                            <!-- FOUND PLATES -->
+                            <div v-else>
+                                <div class="mb-5 flex items-center gap-3">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.2);">
+                                        <CheckCircle2 class="h-5 w-5" style="color:#22c55e;" />
+                                    </div>
+                                    <div>
+                                        <h3 class="text-lg font-bold text-white">{{ foundPlates.length }} Araç Bulundu</h3>
+                                        <p class="text-xs text-slate-400">Aşağıdaki plakalar sistemimizde kayıtlıdır</p>
                                     </div>
                                 </div>
-                                <div class="mb-2 inline-flex items-center gap-2 rounded-xl px-4 py-2" style="background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.15);">
-                                    <span class="text-2xl font-black tracking-widest" style="color:#22c55e;">{{ result.plate }}</span>
+
+                                <div class="space-y-2 mb-5">
+                                    <div
+                                        v-for="plate in foundPlates"
+                                        :key="plate"
+                                        class="flex items-center justify-between rounded-xl border px-4 py-3"
+                                        style="border-color:rgba(34,197,94,0.2);background:rgba(34,197,94,0.06);"
+                                    >
+                                        <span class="text-lg font-black tracking-widest" style="color:#22c55e;">{{ plate }}</span>
+                                        <span class="text-xs font-medium text-slate-400">Listede mevcut</span>
+                                    </div>
                                 </div>
-                                <h3 class="mt-4 text-xl font-bold text-white">Araç Listede Mevcut</h3>
-                                <p class="mt-2 text-slate-400 text-sm">
-                                    Araç listede bulunmaktadır, bizimle iletişime geçin ve <span class="text-yellow-400 font-semibold">ödül kazanın!</span>
+
+                                <p class="text-slate-400 text-sm text-center mb-4">
+                                    Bizimle iletişime geçin ve <span class="text-yellow-400 font-semibold">ödül kazanın!</span>
                                 </p>
 
-                                <!-- Contact Cards -->
-                                <div class="mt-6 grid gap-3 sm:grid-cols-2 text-left">
+                                <div class="grid gap-3 sm:grid-cols-2 text-left">
                                     <a href="tel:02167400840" class="rounded-2xl border p-4 flex items-center gap-3 transition-all hover:border-sky-500/40 hover:bg-white/5" style="border-color:rgba(255,255,255,0.08);background:rgba(255,255,255,0.02);">
                                         <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl" style="background:rgba(59,130,246,0.15);">
                                             <Phone class="h-5 w-5" style="color:#60a5fa;" />
