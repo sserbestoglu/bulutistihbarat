@@ -70,6 +70,9 @@ async function handleSearch() {
         if (response.status === 404) {
             throw new Error('Sorgu servisi şu an kullanılamıyor. Lütfen daha sonra tekrar deneyin.');
         }
+        if (response.status === 422) {
+            throw new Error('En fazla 100 plaka sorgulayabilirsiniz. Lütfen plaka sayısını azaltarak tekrar deneyin.');
+        }
         if (response.status === 500) {
             throw new Error('Sunucuda bir hata oluştu. Lütfen daha sonra tekrar deneyin.');
         }
@@ -199,7 +202,7 @@ function onInput() {
                         <!-- Format hint -->
                         <div v-else class="mt-2 flex items-center gap-1.5 text-xs text-slate-500">
                             <Info class="h-3.5 w-3.5" />
-                            Her satıra ayrı ayrı, aralarında boşluk bırakarak veya virgülle ayrılmış olarak girebilirsiniz. Örn: "34ABC123, 06A1234" veya "35BC456 34ABC123".
+                            Her satıra ayrı ayrı, aralarında boşluk bırakarak veya virgülle ayrılmış olarak en fazla 100 plaka girebilirsiniz. Örn: "34ABC123, 06A1234" veya "35BC456 34ABC123".
                         </div>
                     </div>
 
